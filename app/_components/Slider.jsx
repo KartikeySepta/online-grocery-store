@@ -21,7 +21,7 @@ function Slider({ sliderList }) {
               alt={slider.title}
               width={1000}
               height={400}
-              className="w-full h-[200px] md:h-[500px] object-cover rounded-2xl"
+              className="w-full h-[200px] md:h-[400px] object-cover rounded-2xl"
             />
           </CarouselItem>
         ))}
