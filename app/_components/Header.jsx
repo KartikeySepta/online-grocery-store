@@ -23,6 +23,7 @@ import GlobleApi from "../_utils/GlobleApi";
 
 function Header() {
 
+  
   const [categoryList, setCategoryList] = useState([]);
   useEffect(() => {
     getCategoryList();
@@ -34,30 +35,42 @@ function Header() {
       setCategoryList(resp.data.data);
     });
   };
+  console.log(categoryList);
+
 
   return (
     <div className="p-5 shadow-md flex  justify-between">
       <div className="flex items-center gap-8">
-        <Image src="/logo.png" alt="logo" width={150} height={100} />
+        <Image src="/logo.png" alt="logo" width={150} height={100} priority={true} />
 
         <DropdownMenu>
           <DropdownMenuTrigger>
-            {" "}
             <h2
               className="flex gap-2 items-center
         border rounded-full p-2 px-10 bg-slate-200 cursor-pointer"
             >
-              <LayoutGrid className="h-5 w-5" />
+            <LayoutGrid className="h-5 w-5" /> Category 
             </h2>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuLabel>Browse Category</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            {categoryList.map((category, index) => (
-              <DropdownMenuItem key={index}>
-                <h2>{category?.attributes?.name}</h2>
+            <DropdownMenuSeparator/>
+            {categoryList.map((category,index) => (
+              <DropdownMenuItem key={index} className="flex gap-4 items-center cursor-pointer">
+                <Image src={
+                  process.env.NEXT_PUBLIC_BACKEND_BASE_URL+
+                  category?.icon[0]?.formats?.small?.url} 
+                alt='icon'
+                height={30}
+                width={30}
+                unoptimized={true}
+                
+                />
+                 <h2  className="text-lg">{category.name}</h2>
               </DropdownMenuItem>
             ))}
+
+
           </DropdownMenuContent>
         </DropdownMenu>
 
